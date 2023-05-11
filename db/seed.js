@@ -1,24 +1,7 @@
 console.log('Felix ======= GoodBOY');
-const {Client} = require('pg');
 
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/demo';
-
-const client = new Client({connectionString});
-
-const users = [
-    {
-        name:'Felix',
-        age: 09
-    },
-    {
-        name:'Hambone',
-        age: 11
-    },
-    {
-        name:'Biscuit',
-        age: 13
-    }
-];
+const {client} = require('./index.js');
+const {users} = require('./seed_data.js')
   
 
 async function dropTables () {
@@ -63,7 +46,7 @@ async function createUser(user) {
         console.log('SHIT IS BROKE IN CREATE USER');
         console.log(er);
       }
-}
+};
 async function createInitialUser() {
     try{
     await Promise.all(users.map(createUser))
@@ -71,7 +54,7 @@ async function createInitialUser() {
         console.log('SHIT IS BROKE IN CREATEINITIAL USER');
         console.log(er);
       }
-}
+};
 
   
 
